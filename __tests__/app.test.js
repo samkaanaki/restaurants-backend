@@ -3,16 +3,17 @@ const app = require('../app');
 
 describe('end-point tests', () => {
   describe('/restaurants', () => {
-    test('GET - returns status 200 and restaurants array', () => {
+    test('GET - 200 - returns array containing all restaurant objects', () => {
       return request(app)
         .get('/restaurants')
         .expect(200)
         .then((response) => {
           expect(response.body).toMatchObject(expect.any(Array));
+          expect(typeof response.body[0]).toBe('object');
         });
     });
 
-    test('GET - each restaurant object has the appropriate properties', () => {
+    test('GET - 200 - each restaurant object has the appropriate properties', () => {
       return request(app)
         .get('/restaurants')
         .expect(200)
@@ -30,5 +31,26 @@ describe('end-point tests', () => {
           );
         });
     });
+  });
+
+  describe('/restaurants/:id', () => {
+    test('GET - 200 - returns a restaurant object when requested that specific id', () => {
+      return request(app)
+        .get('/restaurants/1')
+        .expect(200)
+        .then((response) => {
+          expect(response.body).toEqual({
+            id: 1,
+            name: 'Mumtaz',
+            address: 'Chadwick Street, 1 & 2 Mackenzie House, Leeds LS10 1PJ',
+            cuisine: ['Indian', 'Asian', 'Balti', 'Pakistani'],
+            'dog-friendly': false,
+            'vegan-options': true,
+            rating: 5
+          });
+        });
+    });
+
+    test('GET - 404 - ', () => {});
   });
 });
