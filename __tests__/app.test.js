@@ -3,12 +3,31 @@ const app = require('../app');
 
 describe('end-point tests', () => {
   describe('/restaurants', () => {
-    test('GET returns status 200 and restaurants array', () => {
+    test('GET - returns status 200 and restaurants array', () => {
       return request(app)
         .get('/restaurants')
         .expect(200)
         .then((response) => {
           expect(response.body).toMatchObject(expect.any(Array));
+        });
+    });
+
+    test('GET - each restaurant object has the appropriate properties', () => {
+      return request(app)
+        .get('/restaurants')
+        .expect(200)
+        .then((response) => {
+          expect(Object.keys(response.body[0])).toEqual(
+            expect.arrayContaining([
+              'id',
+              'name',
+              'address',
+              'cuisine',
+              'dog-friendly',
+              'vegan-options',
+              'rating'
+            ])
+          );
         });
     });
   });
