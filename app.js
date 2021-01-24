@@ -1,8 +1,11 @@
-// require in the Express framework
 const express = require('express');
-
-// assigns instance of express server to app variable and makes use of built in body-parser
 const app = express();
+
+const data = require('./data/restaurants');
 app.use(express.json());
+
+app.get('/restaurants', (req, res) => {
+  res.json(data);
+});
 
 module.exports = app;
