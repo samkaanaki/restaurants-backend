@@ -51,6 +51,15 @@ describe('end-point tests', () => {
         });
     });
 
-    test('GET - 404 - ', () => {});
+    test('GET - 404 - returns Restaurant not found when given a non existent restaurant id', () => {
+      return request(app)
+        .get('/restaurants/99')
+        .expect(404)
+        .then((response) => {
+          expect(response.body).toEqual({
+            'invalid id': 'Restaurant not found.'
+          });
+        });
+    });
   });
 });
