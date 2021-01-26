@@ -1,5 +1,4 @@
 const express = require('express');
-const restaurants = require('./data/restaurants');
 const app = express();
 const data = require('./data/restaurants');
 app.use(express.json());
@@ -17,6 +16,20 @@ app.get('/restaurants/:id', (req, res) => {
     res.status(404).send({ 'invalid id': 'Restaurant not found.' });
   } else {
     res.status(200).send(data[restaurantId - 1]);
+  }
+});
+
+// GET request for vegan-options query
+app.get('/restaurants?vegan-options=true', (req, res) => {
+  const hasVeganOptions = [];
+
+  for (const restaurant of data) {
+    if (restaurant['vegan-options'] === true) {
+      hasVeganOptions.push(restaurant);
+      res.status(200).send(hasVeganOptions);
+    }
+
+    return hasVeganOptions;
   }
 });
 
