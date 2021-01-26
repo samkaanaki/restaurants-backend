@@ -57,7 +57,7 @@ describe('end-point tests', () => {
         .expect(404)
         .then((response) => {
           expect(response.body).toEqual({
-            'invalid id': 'Restaurant not found.'
+            error: 'Restaurant not found.'
           });
         });
     });
