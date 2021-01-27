@@ -8,20 +8,7 @@ app.use(express.json());
 // GET request for all restaurants with ability to filter by vegan-options and/or dog-friendly queries
 app.get('/restaurants', (req, res) => {
   let filteredRestaurants = data;
-  const cuisines = [
-    'Indian',
-    'Asian',
-    'Balti',
-    'Pakistani',
-    'Cafe',
-    'British',
-    'International',
-    'Steakhouse',
-    'Argentinian',
-    'Vietnamese',
-    'Bar',
-    'Pub'
-  ];
+
   // filter by vegan options
   if (req.query['vegan-options']) {
     const veganOptions = req.query['vegan-options'] === 'true';
@@ -41,9 +28,8 @@ app.get('/restaurants', (req, res) => {
   // filter by type of cuisine
   if (req.query.cuisine) {
     filteredRestaurants = [];
-
     for (const restaurant of data) {
-      // converts each cuisine to lowercase to match the query in the URL bar
+      // map iterates over list of cuisines and converts all to lowercase to match query in URL bar
       restaurant.cuisine.map((cuisineType) => {
         const lowerCaseCuisines = cuisineType.toLowerCase();
 
@@ -53,7 +39,6 @@ app.get('/restaurants', (req, res) => {
       });
     }
   }
-
   res.status(200).send(filteredRestaurants);
 });
 
