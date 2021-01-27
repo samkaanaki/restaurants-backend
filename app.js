@@ -8,6 +8,20 @@ app.use(express.json());
 // GET request for all restaurants with ability to filter by vegan-options and/or dog-friendly queries
 app.get('/restaurants', (req, res) => {
   let filteredRestaurants = data;
+  const cuisines = [
+    'Indian',
+    'Asian',
+    'Balti',
+    'Pakistani',
+    'Cafe',
+    'British',
+    'International',
+    'Steakhouse',
+    'Argentinian',
+    'Vietnamese',
+    'Bar',
+    'Pub'
+  ];
 
   if (req.query['vegan-options']) {
     const veganOptions = req.query['vegan-options'] === 'true';
@@ -21,6 +35,17 @@ app.get('/restaurants', (req, res) => {
     filteredRestaurants = filteredRestaurants.filter((restaurant) => {
       return restaurant['dog-friendly'] === dogFriendly;
     });
+  }
+
+  if (req.query.cuisine) {
+    filteredRestaurants = [];
+
+    for (const restaurant of data) {
+      if (restaurant.cuisine.includes(req.query.cuisine)) {
+        filteredRestaurants.push(restaurant);
+        console.log(filteredRestaurants);
+      }
+    }
   }
 
   res.status(200).send(filteredRestaurants);
