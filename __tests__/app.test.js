@@ -150,7 +150,7 @@ describe('end-point tests', () => {
 
     test('GET - 200 - user can filter by cuisine and relevant restaurants are returned - one cuisine selected', () => {
       return request(app)
-        .get('/restaurants?cuisine=British')
+        .get('/restaurants?cuisine=british')
         .expect(200)
         .then((response) => {
           expect(response.body).toEqual([
@@ -187,7 +187,7 @@ describe('end-point tests', () => {
 
     test('GET - 200 - user can filter by cuisine and relevant restaurants are returned - two cuisines selected', () => {
       return request(app)
-        .get('/restaurants?cuisine=British,Cafe')
+        .get('/restaurants?cuisine=british,cafe')
         .expect(200)
         .then((response) => {
           expect(response.body).toEqual([

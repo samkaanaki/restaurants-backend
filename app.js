@@ -22,7 +22,7 @@ app.get('/restaurants', (req, res) => {
     'Bar',
     'Pub'
   ];
-
+  // filter by vegan options
   if (req.query['vegan-options']) {
     const veganOptions = req.query['vegan-options'] === 'true';
     filteredRestaurants = filteredRestaurants.filter((restaurant) => {
@@ -30,6 +30,7 @@ app.get('/restaurants', (req, res) => {
     });
   }
 
+  // filter by dog friendly
   if (req.query['dog-friendly']) {
     const dogFriendly = req.query['dog-friendly'] === 'true';
     filteredRestaurants = filteredRestaurants.filter((restaurant) => {
@@ -37,14 +38,19 @@ app.get('/restaurants', (req, res) => {
     });
   }
 
+  // filter by type of cuisine
   if (req.query.cuisine) {
     filteredRestaurants = [];
 
     for (const restaurant of data) {
-      if (restaurant.cuisine.includes(req.query.cuisine)) {
-        filteredRestaurants.push(restaurant);
-        console.log(filteredRestaurants);
-      }
+      // converts each cuisine to lowercase to match the query in the URL bar
+      restaurant.cuisine.map((cuisineType) => {
+        const lowerCaseCuisines = cuisineType.toLowerCase();
+
+        if (lowerCaseCuisines.includes(req.query.cuisine)) {
+          filteredRestaurants.push(restaurant);
+        }
+      });
     }
   }
 
