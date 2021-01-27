@@ -155,5 +155,44 @@ describe('end-point tests', () => {
           ]);
         });
     });
+
+    test('GET - 200 - user can filter by both dog-friendly and vegan-options restaurants in one request', () => {
+      return request(app)
+        .get('/restaurants?vegan-options=true&dog-friendly=false')
+        .expect(200)
+        .then((response) => {
+          expect(response.body).toEqual([
+            {
+              id: 1,
+              name: 'Mumtaz',
+              address: 'Chadwick Street, 1 & 2 Mackenzie House, Leeds LS10 1PJ',
+              cuisine: ['Indian', 'Asian', 'Balti', 'Pakistani'],
+              'dog-friendly': false,
+              'vegan-options': true,
+              rating: 5
+            },
+            {
+              id: 5,
+              name: 'Viet Guy',
+              address: '159 Lower Briggate, Leeds LS1 6LY England',
+              cuisine: ['Asian', 'Vietnamese'],
+              'dog-friendly': false,
+              'vegan-options': true,
+              rating: 4.5
+            }
+          ]);
+        });
+    });
+
+    test('GET - 400 - returns Bad Request when user queries a non-existent property ', () => {
+      return request(app)
+        .get('/restaurants?smoke-friendly=true')
+        .expect(400)
+        .then((response) => {
+          expect(response.body).toEqual({
+            '400 error': 'Cannot filter by smoke-friendly'
+          });
+        });
+    });
   });
 });
