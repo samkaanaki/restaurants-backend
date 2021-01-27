@@ -57,7 +57,7 @@ describe('end-point tests', () => {
         .expect(404)
         .then((response) => {
           expect(response.body).toEqual({
-            error: 'Restaurant not found.'
+            '404 error': 'Restaurant with id 99 not found'
           });
         });
     });
@@ -114,6 +114,43 @@ describe('end-point tests', () => {
               'dog-friendly': true,
               'vegan-options': true,
               rating: 4
+            }
+          ]);
+        });
+    });
+
+    test('GET - 200 - ?dog-friendly returns relevant restaurants when given true/false', () => {
+      return request(app)
+        .get('/restaurants?dog-friendly=false')
+        .expect(200)
+        .then((response) => {
+          expect(response.body).toEqual([
+            {
+              id: 1,
+              name: 'Mumtaz',
+              address: 'Chadwick Street, 1 & 2 Mackenzie House, Leeds LS10 1PJ',
+              cuisine: ['Indian', 'Asian', 'Balti', 'Pakistani'],
+              'dog-friendly': false,
+              'vegan-options': true,
+              rating: 5
+            },
+            {
+              id: 4,
+              name: 'Gaucho',
+              address: '21-22 Park Row, Leeds LS1 5JF England',
+              cuisine: ['Steakhouse', 'Argentinian'],
+              'dog-friendly': false,
+              'vegan-options': false,
+              rating: 3
+            },
+            {
+              id: 5,
+              name: 'Viet Guy',
+              address: '159 Lower Briggate, Leeds LS1 6LY England',
+              cuisine: ['Asian', 'Vietnamese'],
+              'dog-friendly': false,
+              'vegan-options': true,
+              rating: 4.5
             }
           ]);
         });
