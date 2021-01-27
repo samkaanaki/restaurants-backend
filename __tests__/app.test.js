@@ -148,14 +148,68 @@ describe('end-point tests', () => {
         });
     });
 
-    test('GET - 400 - returns Bad Request when user queries a non-existent property ', () => {
+    test('GET - 200 - user can filter by cuisine and relevant restaurants are returned - one cuisine selected', () => {
       return request(app)
-        .get('/restaurants?smoke-friendly=true')
-        .expect(400)
+        .get('/restaurants?cuisine=british')
+        .expect(200)
         .then((response) => {
-          expect(response.body).toEqual({
-            '400 error': 'Cannot filter by smoke-friendly'
-          });
+          expect(response.body).toEqual([
+            {
+              id: 2,
+              name: 'Salami & Co',
+              address: '10 Market Place, Otley, Leeds LS21 3AQ England',
+              cuisine: ['Cafe', 'British'],
+              'dog-friendly': true,
+              'vegan-options': true,
+              rating: 5
+            },
+            {
+              id: 3,
+              name: 'LS6 Cafe',
+              address: '16A Headingley Lane, Leeds LS6 2AS England',
+              cuisine: ['British', 'Cafe', 'International'],
+              'dog-friendly': true,
+              'vegan-options': true,
+              rating: 4
+            },
+            {
+              id: 6,
+              name: 'The Brunswick',
+              address: '82 North Street, Leeds LS2 7PN England',
+              cuisine: ['Bar', 'British', 'Pub'],
+              'dog-friendly': true,
+              'vegan-options': true,
+              rating: 4
+            }
+          ]);
+        });
+    });
+
+    test('GET - 200 - user can filter by cuisine and relevant restaurants are returned - two cuisines selected', () => {
+      return request(app)
+        .get('/restaurants?cuisine=british,cafe')
+        .expect(200)
+        .then((response) => {
+          expect(response.body).toEqual([
+            {
+              id: 2,
+              name: 'Salami & Co',
+              address: '10 Market Place, Otley, Leeds LS21 3AQ England',
+              cuisine: ['Cafe', 'British'],
+              'dog-friendly': true,
+              'vegan-options': true,
+              rating: 5
+            },
+            {
+              id: 3,
+              name: 'LS6 Cafe',
+              address: '16A Headingley Lane, Leeds LS6 2AS England',
+              cuisine: ['British', 'Cafe', 'International'],
+              'dog-friendly': true,
+              'vegan-options': true,
+              rating: 4
+            }
+          ]);
         });
     });
   });
