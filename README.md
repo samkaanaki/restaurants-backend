@@ -1,6 +1,6 @@
 # Leeds Feeds 🍽️
 
-[Click here to play the game in your desktop browser](https://nba-gm-simulator.herokuapp.com/)
+[Click here to view hosted API in your browser](https://nba-gm-simulator.herokuapp.com/)
 
 ### Packages
 
