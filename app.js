@@ -5,6 +5,13 @@ const app = express();
 const data = require('./data/restaurants');
 app.use(express.json());
 
+// GET request at / - greeting!
+app.get('/', (req, res) => {
+  const current = new Date();
+  const greeting = `Welcome to the Leeds Feeds API. It's currently ${current.getHours()}:${current.getMinutes()} which means my newborn daughter, Willow, is either crying, screaming or crying. HOW DO I STOP IT?`;
+  res.status(200).send(greeting);
+});
+
 // GET request for all restaurants with ability to filter by vegan-options and/or dog-friendly queries
 app.get('/restaurants', (req, res) => {
   let filteredRestaurants = data;
