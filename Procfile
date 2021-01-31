@@ -1,1 +1,1 @@
-web: nodemon listen.js
+web: node listen.js
