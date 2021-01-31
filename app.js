@@ -7,10 +7,12 @@ app.use(express.json());
 
 // GET request at / - greeting!
 app.get('/', (req, res) => {
+  console.log('hi');
   const current = new Date();
   let mins = current.getMinutes();
+
   if (mins < 10) {
-    return (mins = `0${mins}`);
+    mins = `0${mins}`;
   }
   const greeting = `Welcome to the Leeds Feeds API. It's currently ${current.getHours()}:${mins} which means my newborn daughter, Willow, is either crying, screaming or crying. HOW DO I STOP IT?`;
   res.status(200).send(greeting);
