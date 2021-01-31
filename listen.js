@@ -1,7 +1,7 @@
 const app = require('./app');
 
 // listening on open port and console log proves server is up and running
-const port = 9000;
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+const PORT = process.env.PORT || 9000;
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });
