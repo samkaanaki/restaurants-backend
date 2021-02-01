@@ -2,7 +2,7 @@
 
 [Click here to view hosted API in your browser](https://leeds-feeds-backend.herokuapp.com/)
 
-## Packages
+## Packages used
 
 - **Express** - web app framework to speed up process of implementing my server-side logic for the API
 - **nodemon** - upon file save, nodemon automatically restarts a Node.js app, spinning up the server again
