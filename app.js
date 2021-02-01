@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
 const data = require('./data/restaurants');
+const cors = require('cors');
+
 app.use(express.json());
+app.use(cors());
 
 // GET request at / - greeting!
 app.get('/', (req, res) => {
