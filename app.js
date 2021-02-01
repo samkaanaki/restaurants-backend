@@ -1,6 +1,4 @@
-const { query } = require('express');
 const express = require('express');
-const { filter } = require('./data/restaurants');
 const app = express();
 const data = require('./data/restaurants');
 app.use(express.json());
