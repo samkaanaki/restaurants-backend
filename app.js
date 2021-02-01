@@ -7,7 +7,6 @@ app.use(express.json());
 
 // GET request at / - greeting!
 app.get('/', (req, res) => {
-  console.log('hi');
   const current = new Date();
   let mins = current.getMinutes();
 
