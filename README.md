@@ -2,7 +2,8 @@
 
 ## Getting Started
 
-[Click here to view hosted API in your browser](https://leeds-feeds-backend.herokuapp.com/)
+[Click here to view hosted API in your browser](https://leeds-feeds-backend.herokuapp.com/) <br>
+It is recommended that you open this in a new tab so you can continue to read on and have the available endpoints up while you interact with the API.
 
 Alternatively:
 
