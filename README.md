@@ -1,6 +1,17 @@
 # Leeds Feeds 🍽️
 
+## Getting Started
+
 [Click here to view hosted API in your browser](https://leeds-feeds-backend.herokuapp.com/)
+
+Alternatively:
+
+1. For and clone this repo onto your local machine
+2. Using the terminal, `cd restaurants-backend` to change directory
+3. Run `npm install` to install dependencies
+4. Run `npm start` and app will launch on port 9000
+5. Run `http://localhost:9000` in your browser or HTTP/API Client (I used Insomnia. Postman is also very popular) of choice
+6. Test the endpoints below and enjoy!
 
 ## Packages used
 
