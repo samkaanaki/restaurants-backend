@@ -7,7 +7,7 @@ It is recommended that you open this in a new tab so you can continue to read on
 
 Alternatively:
 
-1. For and clone this repo onto your local machine
+1. Fork and clone this repo onto your local machine
 2. Using the terminal, `cd restaurants-backend` to change directory
 3. Run `npm install` to install dependencies
 4. Run `npm start` and app will launch on port 9000
